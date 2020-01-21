@@ -19,4 +19,43 @@ router.post('/register', (req, res) => {
         })
 })
 
+router.post('/login', (req, res) => {
+    let { username, password } = req.body
+
+    Users.findBy({ username })
+        .first()
+        .then(user => {
+            if (user && bcrypt.compareSync(password, user.password)) {
+                //assign the token
+                const token = assignToken(user)
+
+                //sent the token
+                res.status(200).json({
+                    token,
+                    message: `Welcome to the Magic of Ministry, ${user.username}`
+                })
+            } else {
+                res.status(401).json({ message: 'Riddikulus'})
+            }
+        })
+        .catch(err => {
+            res.status(500).json(error)
+        })
+    })
+
+//creates and assign the token
+function assignToken(user) {
+    const payload = {
+        username: user.username,
+    }
+
+    const secret = process.env.JWT_SECRET || "It's hidden in the Chamber of Secrets"
+
+    const options = {
+        expiresIn: "1h"
+    }
+
+    return jwt.sign(payload, secret, options)
+}
+
 module.exports = router
