@@ -2,11 +2,12 @@ const db = require("../database/dbConfig")
 
 function find() {
     return db('users')
-        .select('id', 'username', 'departments')
+        .select('id', 'username', 'department')
 }
 
 function findBy(filter) {
     return db('users').where(filter)
+    .select("id", "username", "password");
 }
 
 async function add(user) {

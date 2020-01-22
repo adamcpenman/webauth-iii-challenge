@@ -35,10 +35,10 @@ router.post('/login', (req, res) => {
                     message: `Welcome to the Magic of Ministry, ${user.username}`
                 })
             } else {
-                res.status(401).json({ message: 'Riddikulus'})
+                res.status(401).json({ message: 'Wingardium Leviosa, You shall not pass'})
             }
         })
-        .catch(err => {
+        .catch(error => {
             res.status(500).json(error)
         })
     })
@@ -47,9 +47,10 @@ router.post('/login', (req, res) => {
 function assignToken(user) {
     const payload = {
         username: user.username,
+        // department: user.departments,
     }
 
-    const secret = process.env.JWT_SECRET || "It's hidden in the Chamber of Secrets"
+    const secret = process.env.JWT_SECRET || "It's hidden in the Chamber of Secrets";
 
     const options = {
         expiresIn: "1h"
