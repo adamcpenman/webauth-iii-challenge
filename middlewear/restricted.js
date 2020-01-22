@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken")
 
-module.exports = (req, res, next) => {
-    const authorization = req.headers.authorization
+const restricted = (req, res, next) => {
+    const {authorization} = req.headers
     console.log(authorization, "auth")
 
     if (authorization) {
@@ -19,3 +19,6 @@ module.exports = (req, res, next) => {
     }
 }
 
+module.exports = {
+    restricted
+}

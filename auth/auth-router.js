@@ -47,7 +47,7 @@ router.post('/login', (req, res) => {
 function assignToken(user) {
     const payload = {
         username: user.username,
-        // department: user.departments,
+        department: user.department,
     }
 
     const secret = process.env.JWT_SECRET || "It's hidden in the Chamber of Secrets";
