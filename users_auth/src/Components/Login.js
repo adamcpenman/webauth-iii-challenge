@@ -7,7 +7,7 @@ function Login(props) {
   const [data, setData] = useState({
     username: "",
     password: "",
-    department: ""
+    // department: ""
   });
 
   const handleChange = e => {
@@ -23,7 +23,7 @@ function Login(props) {
     e.preventDefault()
     try {
       await LoginUser(data)
-      props.history.push("/")
+      props.history.push("/users")
     } catch (error) {
       const status = error.response && error.response.status
       switch (status) {
@@ -67,13 +67,13 @@ function Login(props) {
                 value={data.password}
                 onChange={handleChange}
               />
-               <input
+               {/* <input
                 type="text"
                 name="department"
                 placeholder="Department"
                 value={data.department}
                 onChange={handleChange}
-              />
+              /> */}
               <button type="submit">Login</button>
             </div>
           </div>
