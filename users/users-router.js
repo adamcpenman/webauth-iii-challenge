@@ -18,8 +18,8 @@ res.json(vDepart)
             next(err)
     }
 })
-// router.get('/', restricted,(req, res, next) => {
-//     console.log(restricted, "restricted")
+// router.get('/', (req, res, next) => {
+//     // console.log(restricted, "restricted")
 //     Users.find()
 //         .then(users => {
 //             res.json(users);
